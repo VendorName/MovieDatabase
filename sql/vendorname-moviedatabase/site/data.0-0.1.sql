@@ -1,7 +1,7 @@
 -- insert default values for table: module
 
 INSERT INTO "module" ( "module", "enabled" )
-     VALUES ( 'VendorName/MovieDatabase', TRUE );
+     VALUES ( 'VendorName\MovieDatabase', TRUE );
      
 -- insert default values for table: movies
 

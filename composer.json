@@ -44,7 +44,7 @@
 			"en" : "Tutorial"
 		},
 		"modules" : {
-			"VendorName\\MovieDatabase" : "Banner"
+			"VendorName\\MovieDatabase" : "Movie Database Tutorial"
 		}
 	}
 }
