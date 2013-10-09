@@ -1,5 +1,5 @@
 {
-	"name" : "VendorName/MovieDatabase",
+	"name" : "vendor-name/movie-database",
 	"description" : "Tutorial Movie Database application for Gridguyz CMS",
 	"type" : "gridguyz-module",
 	"authors" : [{
