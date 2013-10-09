@@ -1,0 +1,37 @@
+<?php
+$paginationControl = $this->paginationControl($this->paginator, 'Sliding', 'paginator/default')
+?>
+ 
+<section>
+    <form action=""><?= $paginationControl ?></form>
+ 
+	<table>
+	    <thead>
+	        <tr>
+	           <th nowrap="nowrap"><?= $this->translate('movieDatabase.field.title.label') ?></th>
+	           <th nowrap="nowrap"><?= $this->translate('movieDatabase.field.releaseYear.label') ?></th>
+	        </tr>
+	    </thead>
+	    <tbody>
+    	    <? 
+    	       foreach ( $this->paginator as $movie ):
+    	        /* @var \VendorName\MovieDatabase\Model\Movie\Structure $movie */
+    	    ?>
+    	        <tr class="row">
+    	            <td width="100%" nowrap="nowrap">
+    	               <a href="<?= $this->url('VendorName\MovieDatabase\Movie', array('locale' => (string) $this->locale() ,
+    	                                                                               'title' => $movie->getTitle(), 
+    	                                                                               'year' => $movie->getReleaseYear()
+    	                                                                              )
+    	                                      ) ?>">
+    	                   <?= $movie->getTitle() ?>
+    	               </a>
+    	            </td>
+    	            <td nowrap="nowrap"><?= $movie->getReleaseYear() ?></td>
+    	        </tr>
+    	    <? endforeach; ?>
+	   </tbody>
+	</table>
+ 
+	<form action=""><?= $paginationControl ?></form>
+</section>

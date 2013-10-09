@@ -1,0 +1,8 @@
+<?php 
+$this->headTitle( $this->movie->getTitle() ) 
+?>
+ 
+<div class="page">
+    <h3><?= $this->escapeHtml( $this->movie->getTitle() ) ?></h3>
+    <?= $this->form( $this->form, 'movieDatabase' ) ?>
+</div>

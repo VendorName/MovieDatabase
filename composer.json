@@ -1,0 +1,50 @@
+{
+	"name" : "VendorName/MovieDatabase",
+	"description" : "Tutorial Movie Database application for Gridguyz CMS",
+	"type" : "gridguyz-module",
+	"authors" : [{
+			"name" : "Mihaly Farkas",
+			"email" : "mihaly.farkas@megaweb.hu",
+			"homepage" : "http://gridguyz.com/",
+			"role" : "Developer"
+		}
+	],
+	"keywords" : [
+		"gridguyz",
+		"module",
+		"tutorial",
+		"movie database"
+	],
+	"homepage" : "http://gridguyz.com/",
+	"license" : [
+		"CC-BY-SA-3.0"
+	],
+	"require" : {
+		"gridguyz/module-installer" : "*",
+		"gridguyz/core" : "*",
+		"php" : ">=5.4"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"VendorName\\MovieDatabase" : "src/"
+		},
+		"classmap" : [
+			"Module.php"
+		]
+	},
+	"support" : {
+		"source" : "https://github.com/gridguyz/banner",
+		"email" : "dev@megaweb.hu"
+	},
+	"extra" : {
+		"display-name" : {
+			"en" : "Movie Database (Tutorial)"
+		},
+		"display-description" : {
+			"en" : "Tutorial"
+		},
+		"modules" : {
+			"VendorName\\MovieDatabase" : "Banner"
+		}
+	}
+}

@@ -1,0 +1,25 @@
+<?php
+
+/* @var $movie \VendorName\MovieDatabase\Model\Movie\Structure */
+$movie = $this->movie;
+ 
+$this->headTitle($movie->getTitle());
+
+
+$imdbData = $this->imdb($movie->getImdbId());
+?>
+ 
+<section>
+    <? if (isset($imdbData->PosterLocalUri) && $imdbData->PosterLocalUri != 'N/A') :  ?>
+        <img alt="<?= $movie->getTitle() ?>" src="<?= $imdbData->PosterLocalUri ?>">
+    <? endif; ?>
+
+   <dl>
+       <dt><?= $this->translate('movieDatabase.field.releaseYear.label') ?></dt>
+       <dd><?= $movie->getReleaseYear() ?></dd>
+       <? if (isset($imdbData->Plot) && $imdbData->Plot != 'N/A') :  ?>
+        <dt><?= $this->translate('movieDatabase.field.plot.label') ?></dt>
+        <dd><?= $imdbData->Plot ?></dd>
+    <? endif; ?>
+   </dl>
+</section>

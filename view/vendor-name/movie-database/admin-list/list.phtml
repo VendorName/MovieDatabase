@@ -1,0 +1,71 @@
+<?php
+$this->headTitle( $title = $this->translate( 'movieDatabase.admin.menu.movieDatabaseList') );
+$view   = $this;
+$rowSet = $this->rowSet();
+?>
+
+<? if ( ! $this->format ): ?>
+<h1><?= $title ?></h1>
+<? endif ?>
+<?= $this->rowSet( $this->paginator, $rowSet::FLAG_LAYOUT_ALL )
+         ->setColumnTranslatePrefix( 'movieDatabase.field' )
+         ->setColumnTranslatePostfix( 'label' )
+         ->setColumnTranslateTextDomain( 'movieDatabase' )
+         ->setPage( $this->page )
+         ->setColumns( array(
+              'title' => $rowSet::STRING,
+              'releaseYear'      => $rowSet::STRING,
+              'imdbId'     => function ( $row ) use ( $view ) {
+                return '<a href="http://www.imdb.com/title/' . $row->getImdbId() . '" target="_blank">' . $row->getImdbId() . '</a>';
+              },
+              'actions'             => function ( $row ) use ( $view ) {
+                $view->placeholder( 'listActions' )->set( '' );
+                $view->placeholder( 'listActions' )->captureStart();
+                ?>
+                    <a class="action-button view" target="_blank"
+                       title="<?= $view->translate( 'default.view' ) ?>"
+                       href="<?= $this->url('VendorName\MovieDatabase\Movie', array('locale' => (string) $this->locale() ,
+                    	                                                                               'title' => $row->getTitle(), 
+                    	                                                                               'year' => $row->getReleaseYear()
+                    	                                                                              )
+                    	                                      ) ?>">
+                    </a>
+                <? if ( $this->isAllowed( 'movieDatabase.admin', 'edit' ) ): ?>
+                    <a class="action-button edit"
+                       title="<?= $view->translate( 'default.edit' ); ?>"
+                       href="<?= $this->url('VendorName\MovieDatabase\Admin\Movie\Edit', array('locale' => (string) $this->locale() ,
+                    	                                                                               'title' => $row->getTitle(), 
+                    	                                                                               'year' => $row->getReleaseYear()
+                    	                                                                              )
+                    	                                      ) ?>">
+                    </a>
+                <? endif ?>
+                <? if ( $this->isAllowed( 'movieDatabase.admin', 'delete' ) ): ?>
+                    <a class="action-button delete"
+                       title="<?= $view->translate( 'default.delete' ); ?>"
+                       href="<?= $this->url('VendorName\MovieDatabase\Admin\Movie\Delete', array('locale' => (string) $this->locale() ,
+                    	                                                                               'title' => $row->getTitle(), 
+                    	                                                                               'year' => $row->getReleaseYear()
+                    	                                                                              )
+                    	                                      ) ?>"
+                       onclick="return js.require('js.ui.dialog').confirm(this);">
+                    </a>
+                <? endif ?>
+                <?
+                                $view->placeholder( 'listActions' )->captureEnd();
+                                return (string) $view->placeholder( 'listActions' );
+              },
+          ) )
+         ->render( $this->format );
+?>
+
+
+<? if ( ! $this->format && $this->isAllowed( 'movieDatabase.admin', 'create' ) ): ?>
+<div class="more-links">
+    <a class="button-appearance"
+       href="<?= $this->url('VendorName\MovieDatabase\Admin\Movie\Create', array('locale' => (string) $this->locale())
+            	                                      ) ?>">
+        <?= $view->translate( 'default.createNew' ); ?>
+    </a>
+</div>
+<? endif ?>
